@@ -4,4 +4,5 @@ module.exports = (server) => {
     server.use('/tasks',    require('./tasks')(server));
     server.use('/auth',     require('./auth')(server));
     server.use('/projects', require('./projects')(server));
+    server.use('/teams', require('./teams')(server));
 };

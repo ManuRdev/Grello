@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const TeamSchema = Schema({
-    user: [{
+    users: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
     project: {
         type: Schema.Types.ObjectId,
-        ref: 'Project'
+        ref: 'Project',
+        required: true
     }
 });
 

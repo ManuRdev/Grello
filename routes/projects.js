@@ -21,13 +21,6 @@ module.exports = (server) => {
         server.middlewares.ensureAuthenticated,
         server.controllers.projects.remove);
 
-    router.post('/:id/invite/:userId',
-        server.middlewares.ensureAuthenticated,
-        server.controllers.projects.invite);
-
-    router.post('/:id/kick/:userId',
-        server.middlewares.ensureAuthenticated,
-        server.controllers.projects.kick);
 
     return router;
 };
