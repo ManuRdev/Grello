@@ -1,0 +1,132 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ALJ",
+		"_postman_id": "004693ed-9e4e-a2e1-d899-adc2fe51c05d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"url": "http://localhost:8080/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"mail@mail.com\",\n\t\"password\": \"password\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "List Users",
+			"request": {
+				"url": "http://localhost:8080/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Project",
+			"request": {
+				"url": "http://localhost:8080/projects",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTVkZjkzYWYwZGZiOTdkNWQyYzRjYTgiLCJpYXQiOjE0OTkzMzEwNDYsImV4cCI6MTQ5OTMzMTEwNn0.0iLH4myM5ZPVsnfbRxr3USEl36RwhqjQoDhky9By7pU",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"My GES Project\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"url": "http://localhost:8080/auth/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"mail@mail.com\",\n\t\"password\": \"password\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Invite User",
+			"request": {
+				"url": "http://localhost:8080/projects/595df9f5f0dfb97d5d2c4caa/invite/595df97af0dfb97d5d2c4ca9",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTVkZjkzYWYwZGZiOTdkNWQyYzRjYTgiLCJpYXQiOjE0OTkzMzEyNzIsImV4cCI6MTQ5OTMzNDg3Mn0.SDcSYlmySqrivBBy8MST7Xy7wXGOthL0kGmyvW_s4AA",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "List Projects",
+			"request": {
+				"url": "http://localhost:8080/projects",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Kick User",
+			"request": {
+				"url": "http://localhost:8080/projects/595df9f5f0dfb97d5d2c4caa/kick/595df97af0dfb97d5d2c4ca9",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1OTVkZjkzYWYwZGZiOTdkNWQyYzRjYTgiLCJpYXQiOjE0OTkzMzE1ODksImV4cCI6MTQ5OTMzNTE4OX0.Dhs2M1fxq1ZDMyTVuT0QkMtraaxPl3LYDX-rCd9WtWo",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

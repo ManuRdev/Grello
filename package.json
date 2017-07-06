@@ -1,0 +1,27 @@
+{
+  "name": "node3aljanv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/julien-sarazin/learning-nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/julien-sarazin/learning-nodejs/issues"
+  },
+  "homepage": "https://gitlab.com/julien-sarazin/learning-nodejs#README",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "mongoose": "^4.11.1",
+    "sha1": "^1.1.1",
+      "bluebird": "latest"
+  }
+}
