@@ -4,8 +4,12 @@ const express = require('express');
 module.exports = (server) => {
     const router = express.Router();
 
+
     router.get('/',
+        //todo: server.middlewares.ensureMembres,
         server.controllers.teams.list);
+
+
 
     router.post('/',
         server.middlewares.ensureAuthenticated,

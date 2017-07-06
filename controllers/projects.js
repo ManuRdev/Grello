@@ -19,14 +19,33 @@ module.exports = (server) => {
 
     function create(req, res) {
         const userId = req.token.userId;
+        let project;
+        let team;
 
-        let project = new Project(req.body);
-        project.creator = userId;
-
-
-        project.save()
+        createProject()
+            .then(createTeam)
+            .then(addTeamToProject)
             .then(project => res.status(201).send(project))
             .catch(err => res.status(500).send(err));
+
+        function createProject() {
+            project= new Project(req.body)
+            project.creator = userId
+            return project.save()
+
+        }
+
+        function createTeam(project) {
+            team= new Team();
+            team.project=project.id;
+            team.users.push(project.creator);
+            return team.save();
+        }
+
+        function addTeamToProject(team) {
+            project.team = team.id;
+            return project.save();
+        }
     }
 
     function remove(req, res) {
