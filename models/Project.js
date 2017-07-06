@@ -10,10 +10,10 @@ const ProjectSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    members: [{
+    team: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
-    }]
+        ref: 'Team'
+    }
 });
 
 
