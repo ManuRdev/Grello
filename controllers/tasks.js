@@ -20,10 +20,15 @@ module.exports = (server) => {
     }
 
     function create(req, res) {
+        let project= Project.findById(req.params.idProject);
         let user;
+        let task;
         return User.findById(req.token.userId)
             .then(createTask)
+            .then(instance => task = instance)
             .then(addToTask)
+            .then(addToUser)
+            .then(addToProject)
             .then(task => res.status(201).send(task))
             .catch(error => res.status(500).send(error));
 
@@ -34,37 +39,20 @@ module.exports = (server) => {
 
         function addToTask(task) {
             task.creator = req.token.userId;
-            task.project = req.params.id;
+            task.project = req.params.idProject;
             return task.save();
         }
+
+        function addToUser(task) {
+            user.tasks.push(task.id);
+            return user.save();
+        }
+
+        function addToProject(task) {
+            project.tasks.push(task.id);
+            return project.save();
+        }
     }
-    // function create(req, res) {
-    //     let project;
-    //     let task = new Task(req.body);
-    //     task.owner = req.token.userId;
-    //
-    //     addToUser(task)
-    //         .then(addToProject)
-    //         .then(task.save())
-    //         .then(task => res.status(201).send(task))
-    //         .catch(error => res.status(500).send(error));
-    //
-    //
-    //     function addToUser(task) {
-    //         return User.findById(req.token.userId)
-    //             .then(user => {
-    //                 user.tasks.push(task.id);
-    //                 return user.save();
-    //             })
-    //             .then(user => {return task;});
-    //     }
-    //
-    //     function addToProject(task) {
-    //         project= Project.findById(req.params.idProject)
-    //         project.tasks.push(task.id);
-    //         return project.save();
-    //     }
-    // }
 
     function remove(req, res) {
         return Task.findByIdAndRemove(req.params.id)

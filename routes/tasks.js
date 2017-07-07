@@ -6,28 +6,28 @@ module.exports = (server) => {
         server.middlewares.ensureAuthenticated,
         server.controllers.tasks.list);
 
-    router.get('/:idTask',
+    router.get('/:idProject/:idTask',
         server.middlewares.ensureAuthenticated,
         server.controllers.tasks.infoTask);
 
-    router.post('/',
+    router.post('/:idProject',
         server.middlewares.ensureAuthenticated,
         server.middlewares.bodyParser.json(),
         server.middlewares.ensureBodyFields(['title', 'dueDate']),
         server.controllers.tasks.create);
 
-    router.delete('/delete/:idTask',
+    router.delete('/:idProject/delete/:idTask',
         server.middlewares.ensureAuthenticated,
         //TODO server.middlewares.ensureCreatorAssignedOrAdmin,
         server.controllers.tasks.remove);
 
-    router.put('/update/:idTask',
+    router.put('/:idProject/update/:idTask',
         server.middlewares.ensureAuthenticated,
         //TODO server.middlewares.ensureCreatorAssignedOrAdmin,
         server.middlewares.bodyParser.json(),
         server.controllers.tasks.update);
 
-    router.put('/assign/:idTask/:idUser',
+    router.put('/:idProject/assign/:idTask/:idUser',
         server.middlewares.ensureAuthenticated,
         //TODO server.middlewares.ensureCreatorAssignedOrAdmin,
         server.middlewares.bodyParser.json(),
