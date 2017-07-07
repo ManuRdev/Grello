@@ -21,6 +21,7 @@ module.exports = (server) => {
         Team.findById(req.params.id)
             .populate('users')
             .then(teams => res.send(teams))
+            .catch(err => res.status(500).send(err));
     }
 
     function create(req, res) {
