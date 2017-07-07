@@ -10,7 +10,6 @@ module.exports = (server) => {
         remove,
         update,
         afficheProject
-
     };
 
     function list(req, res) {
@@ -97,7 +96,9 @@ module.exports = (server) => {
     }
 
     function afficheProject(){
-        //TODO
+        Project.findById(req.params.id)
+            .populate('users')
+            .then(projects => res.send(projects))
     }
 };
 
