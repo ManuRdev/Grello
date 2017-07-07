@@ -27,7 +27,16 @@ module.exports = (server) => {
             .then(task => res.status(201).send(task))
             .catch(error => res.status(500).send(error));
 
-        function
+        function createTask(data) {
+            user = data;
+            return new Task(req.body);
+        }
+
+        function addToTask(task) {
+            task.creator = req.token.userId;
+            task.project = req.params.id;
+            return task.save();
+        }
     }
     // function create(req, res) {
     //     let project;
