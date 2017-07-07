@@ -49,11 +49,16 @@ module.exports = (server) => {
     }
 
     function remove(req, res) {
+        let project;
         let team;
+        let tasks;
+        let task;
         findProject(req)
             .then(ensureExist)
             .then(ensureCreator)
+            .then(instance => project = instance)
             .then(removeTeam)
+            .then(removeTask)
             .then(remove)
             .then(() => res.status(204).send())
             .catch(err => res.status(err.code || 500).send(err.reason || err));
@@ -62,12 +67,19 @@ module.exports = (server) => {
             return Project.findByIdAndRemove(req.params.id)
         }
 
-        function removeTeam(projet) {
-            team=Team.findOne({projet:projet.id});
+        function removeTeam(project) {
+            team=Team.findOne({project:project.id});
             return team.remove();
         }
         function ensureCreator(project) {
             return project.creator.toString() === req.token.userId ? project : Promise.reject({code: 403, reason: 'not.allowed'});
+        }
+
+        function removeTask(project) {
+            tasks = project.tasks;
+            for(let i=0 ;i<tasks.length;i++){
+               task = tasks[i].findOneAndRemove({project:project.id})
+            }
         }
     }
 
