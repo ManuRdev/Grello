@@ -9,6 +9,7 @@ module.exports = (server) => {
         create,
         remove,
         update,
+        infoTask,
         assign
     };
 
@@ -57,6 +58,9 @@ module.exports = (server) => {
             .then(task => res.status(204).send());
     }
 
+    function infoTask(req,res) {
+
+    }
     function assign(req, res) {
 
     }
