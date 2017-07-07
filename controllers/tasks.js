@@ -20,7 +20,7 @@ module.exports = (server) => {
     }
 
     function create(req, res) {
-        let project= Project.findById(req.params.idProject);
+        let project;
         let user;
         let task;
         return User.findById(req.token.userId)
@@ -28,6 +28,8 @@ module.exports = (server) => {
             .then(instance => task = instance)
             .then(addToTask)
             .then(addToUser)
+            .then(findProject)
+            .then(ensureExist)
             .then(addToProject)
             .then(task => res.status(201).send(task))
             .catch(error => res.status(500).send(error));
@@ -48,9 +50,17 @@ module.exports = (server) => {
             return user.save();
         }
 
-        function addToProject(task) {
-            project.tasks.push(task.id);
-            return project.save();
+        function addToProject(data) {
+            data.tasks.push(task.id);
+            return data.save();
+        }
+
+        function ensureExist(data) {
+            return data ? data : Promise.reject({code: 422, reason: 'unprocessable.entities'});
+        }
+
+        function findProject() {
+            return project= Project.findById(req.params.idProject);
         }
     }
 
