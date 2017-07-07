@@ -13,7 +13,7 @@ module.exports = (server) => {
 
     router.post('/',
         server.middlewares.ensureAuthenticated,
-        server.middlewares.ensureBodyFields(['title']),
+        //server.middlewares.ensureBodyFields(['title']),
         server.middlewares.bodyParser.json(),
         server.controllers.projects.create);
 

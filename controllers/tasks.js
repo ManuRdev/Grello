@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 module.exports = (server) => {
     const Task = server.models.Task;
     const User = server.models.User;
+    const Project = server.models.Project;
 
     return {
         list,
@@ -19,34 +20,42 @@ module.exports = (server) => {
     }
 
     function create(req, res) {
-        let task = new Task(req.body);
-        task.owner = req.token.userId;
-
-        task.save()
-            .then(addToUser)
-            .then(addToProject)
+        let user;
+        return User.findById(req.token.userId)
+            .then(createTask)
+            .then(addToTask)
             .then(task => res.status(201).send(task))
             .catch(error => res.status(500).send(error));
 
-
-        function addToUser(task) {
-            return User.findById(req.token.userId)
-                .then(user => {
-                    user.tasks.push(task);
-                    return user.save();
-                })
-                .then(user => {return task;});
-        }
-
-        function addToProject(task) {
-            return Project.findById(req.params.idProject)
-                .then(project=>{
-                    project.tasks.push(task.id);
-                    return project.save();
-                })
-                .then(project =>{return task.id})
-        }
+        function
     }
+    // function create(req, res) {
+    //     let project;
+    //     let task = new Task(req.body);
+    //     task.owner = req.token.userId;
+    //
+    //     addToUser(task)
+    //         .then(addToProject)
+    //         .then(task.save())
+    //         .then(task => res.status(201).send(task))
+    //         .catch(error => res.status(500).send(error));
+    //
+    //
+    //     function addToUser(task) {
+    //         return User.findById(req.token.userId)
+    //             .then(user => {
+    //                 user.tasks.push(task.id);
+    //                 return user.save();
+    //             })
+    //             .then(user => {return task;});
+    //     }
+    //
+    //     function addToProject(task) {
+    //         project= Project.findById(req.params.idProject)
+    //         project.tasks.push(task.id);
+    //         return project.save();
+    //     }
+    // }
 
     function remove(req, res) {
         return Task.findByIdAndRemove(req.params.id)

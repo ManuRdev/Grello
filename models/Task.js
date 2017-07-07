@@ -22,7 +22,7 @@ const TaskSchema = Schema({
     project: {
         type: Schema.Types.ObjectId,
             ref: 'Project',
-            require : true
+            required : true
     }
 });
 
