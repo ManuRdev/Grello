@@ -6,14 +6,15 @@ module.exports = (server) => {
 
 
     router.get('/',
-        //todo: server.middlewares.ensureMembres,
         server.controllers.teams.list);
 
-
+    router.get('/:id',
+        //todo: server.middlewares.ensureMembres,
+        server.controllers.teams.listTeam);
 
     router.post('/',
         server.middlewares.ensureAuthenticated,
-        server.middlewares.ensureRights(1),
+        //server.middlewares.ensureRights(1),
         server.middlewares.bodyParser.json(),
         server.controllers.teams.create);
 

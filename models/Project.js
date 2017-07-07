@@ -13,7 +13,13 @@ const ProjectSchema = Schema({
     team: {
         type: Schema.Types.ObjectId,
         ref: 'Team'
-    }
+    },
+    tasks: [
+        {
+            type: Schema.Types.ObjectId,
+            ref:'Task'
+        }
+    ]
 });
 
 

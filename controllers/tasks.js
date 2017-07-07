@@ -8,7 +8,8 @@ module.exports = (server) => {
         list,
         create,
         remove,
-        update
+        update,
+        assign
     };
 
     function list(req, res) {
@@ -44,5 +45,9 @@ module.exports = (server) => {
     function update(req, res) {
         return Task.findByIdAndUpdate(req.params.id, req.body)
             .then(task => res.status(204).send());
+    }
+
+    function assign(req, res) {
+
     }
 };

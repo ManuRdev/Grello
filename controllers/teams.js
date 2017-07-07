@@ -4,6 +4,7 @@ module.exports = (server) => {
 
     return {
         list,
+        listTeam,
         create,
         remove,
         update,
@@ -14,6 +15,10 @@ module.exports = (server) => {
     function list(req, res) {
         Team.find()
             .then(teams => res.send(teams))
+    }
+
+    function listTeam(req, res) {
+        //TODO
     }
 
     function create(req, res) {

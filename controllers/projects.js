@@ -8,7 +8,8 @@ module.exports = (server) => {
         list,
         create,
         remove,
-        update
+        update,
+        afficheProject
 
     };
 
@@ -83,6 +84,10 @@ module.exports = (server) => {
 
     function ensureExist(data) {
         return data ? data : Promise.reject({code: 422, reason: 'unprocessable.entities'});
+    }
+
+    function afficheProject(){
+        //TODO
     }
 };
 

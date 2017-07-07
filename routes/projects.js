@@ -6,9 +6,12 @@ module.exports = (server) => {
     router.get('/',
         server.controllers.projects.list);
 
+    router.get('/id',
+        server.controllers.projects.afficheProject);
+
     router.post('/',
         server.middlewares.ensureAuthenticated,
-        server.middlewares.ensureRights(1),
+        //server.middlewares.ensureRights(1),
         server.middlewares.bodyParser.json(),
         server.controllers.projects.create);
 
