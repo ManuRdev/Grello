@@ -18,7 +18,9 @@ module.exports = (server) => {
     }
 
     function listTeam(req, res) {
-        //TODO
+        Team.findById(req.params.id)
+            .populate('users')
+            .then(teams => res.send(teams))
     }
 
     function create(req, res) {
