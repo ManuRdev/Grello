@@ -23,6 +23,7 @@ module.exports = (server) => {
 
         task.save()
             .then(addToUser)
+            .then(addToProject)
             .then(task => res.status(201).send(task))
             .catch(error => res.status(500).send(error));
 
@@ -34,6 +35,15 @@ module.exports = (server) => {
                     return user.save();
                 })
                 .then(user => {return task;});
+        }
+
+        function addToProject(task) {
+            return Project.findById(req.params.idProject)
+                .then(project=>{
+                    project.tasks.push(task.id);
+                    return project.save();
+                })
+                .then(project =>{return task.id})
         }
     }
 
