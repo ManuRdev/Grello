@@ -7,11 +7,13 @@ module.exports = (server) => {
         server.controllers.projects.list);
 
     router.get('/id',
+        server.middlewares.ensureAuthenticated,
+        //TODO server.middlewares.ensureMember,
         server.controllers.projects.afficheProject);
 
     router.post('/',
         server.middlewares.ensureAuthenticated,
-        //server.middlewares.ensureRights(1),
+        server.middlewares.ensureBodyFields(['title']),
         server.middlewares.bodyParser.json(),
         server.controllers.projects.create);
 
